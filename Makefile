@@ -18,4 +18,4 @@ test-apply:
 	terraform apply -var-file=test.tfvars -autoapprove
 
 docs:
-	terraform-docs markdown . >> README.md
+	poetry run python make_doc.py

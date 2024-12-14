@@ -1,28 +1,8 @@
-import typing
-
 import click
 import yaml
-from pydantic import BaseModel
 from pydantic_core import ValidationError
 
-
-class Rule(BaseModel):
-    name: str
-    access: typing.Literal["ALLOW", "DENY"]
-    network_zones: typing.Optional[list[str]] = None
-    step_up_auth: typing.Optional[bool] = None
-    auth_frequency: typing.Optional[typing.Literal["daily", "hourly"]] = None
-    group_targets: typing.Optional[list[str]] = None
-    group_exclusions: typing.Optional[list[str]] = None
-    managed_device: typing.Optional[
-        list[typing.Literal["all", "ios", "macos", "android", "windows", "chromeos"]]
-    ] = None
-
-
-class Root(BaseModel):
-    name: str
-    description: str
-    rules: list[Rule]
+from schema import Root
 
 
 @click.command()
