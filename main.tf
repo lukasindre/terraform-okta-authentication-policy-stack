@@ -56,6 +56,13 @@ resource "okta_app_signon_policy_rule" "rules" {
       type    = local.platform_map[platform_include.value]["type"]
     }
   }
+  dynamic "platform_include" {
+    for_each = contains(lookup(each.value, "unmanaged_device", []), "all") ? [] : lookup(each.value, "unmanaged_device", [])
+    content {
+      os_type = local.platform_map[platform_include.value]["os_type"]
+      type    = local.platform_map[platform_include.value]["type"]
+    }
+  }
 }
 
 resource "okta_app_signon_policy_rule" "implicit_deny" {
