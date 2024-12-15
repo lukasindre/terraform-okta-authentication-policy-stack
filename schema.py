@@ -7,7 +7,8 @@ class Rule(BaseModel):
     name: str = Field(description="Name of the rule")
     access: typing.Literal["ALLOW", "DENY"] = Field(description="Access type.")
     network_zones: typing.Optional[list[str]] = Field(
-        None, description="List of network zone IDs."
+        None,
+        description="List of network zone names.  These must exist.  Consider using `depends_on` in your module declaration on required network zones.",
     )
     step_up_auth: typing.Optional[bool] = Field(
         None, description="Whether or not MFA is required each auth."
@@ -16,10 +17,12 @@ class Rule(BaseModel):
         None, description="Frequency of auth."
     )
     group_targets: typing.Optional[list[str]] = Field(
-        None, description="Groups to target for the policy rule."
+        None,
+        description="Group names to target for the policy rule.  These must exist.  Consider using `depends_on` in your module declaration on required groups.",
     )
     group_exclusions: typing.Optional[list[str]] = Field(
-        None, description="Groups to exclude for the policy rule."
+        None,
+        description="Group names to exclude for the policy rule.  These must exist.  Consider using `depends_on` in your module declaration on required groups.",
     )
     managed_device: typing.Optional[
         list[typing.Literal["all", "ios", "macos", "android", "windows", "chromeos"]]
