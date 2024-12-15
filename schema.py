@@ -36,6 +36,9 @@ class Rule(BaseModel):
         None,
         description="Unmanaged devices to target for the policy rule.  Cannot be set with `managed_device`.",
     )
+    phishing_resistant: typing.Optional[bool] = Field(
+        True, description="Whether or not the policy is phishing resistant."
+    )
 
     @model_validator(mode="after")
     def check_exclusive_management(self):
