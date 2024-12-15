@@ -29,7 +29,7 @@ def generate_table(model) -> str:
             "name": wrap_backtick(name),
             "type": wrap_backtick(field.annotation),
             "required": wrap_backtick(field.is_required()),
-            "default": field.default
+            "default": wrap_backtick(field.default)
             if field.default is not PydanticUndefined
             else None,
             "description": field.description,

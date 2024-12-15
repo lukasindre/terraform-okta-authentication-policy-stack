@@ -91,6 +91,17 @@ resource "okta_app_signon_policy_rule" "rules" {
       type    = local.platform_map[platform_include.value]["type"]
     }
   }
+  constraints = lookup(each.value, "phishing_resistant", true) ? [
+    jsonencode(
+      {
+        possession = {
+          required          = true
+          phishingResistant = "REQUIRED"
+          userPresence      = "REQUIRED"
+        }
+      }
+    )
+  ] : null
 }
 
 resource "okta_app_signon_policy_rule" "implicit_deny" {
