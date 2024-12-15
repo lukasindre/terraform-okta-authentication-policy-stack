@@ -15,7 +15,7 @@ test-plan:
 	terraform plan -var-file=test.tfvars
 
 test-apply:
-	terraform apply -var-file=test.tfvars -autoapprove
+	terraform apply -var-file=test.tfvars -auto-approve
 
 docs:
 	poetry run python make_doc.py

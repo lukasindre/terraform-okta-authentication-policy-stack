@@ -10,17 +10,17 @@ The module expects a yaml file with the following structure:
 | `description` | `<class 'str'>`     | `True`     |           | Description of the policy |
 | `rules`       | `list[schema.Rule]` | `True`     |           | List of configured rules  |
 ## Rule
-| name               | type                                                                                             | required   | default   | description                                                                            |
-|--------------------|--------------------------------------------------------------------------------------------------|------------|-----------|----------------------------------------------------------------------------------------|
-| `name`             | `<class 'str'>`                                                                                  | `True`     |           | Name of the rule                                                                       |
-| `access`           | `typing.Literal['ALLOW', 'DENY']`                                                                | `True`     |           | Access type.                                                                           |
-| `network_zones`    | `typing.Optional[list[str]]`                                                                     | `False`    |           | List of network zone IDs.                                                              |
-| `step_up_auth`     | `typing.Optional[bool]`                                                                          | `False`    |           | Whether or not MFA is required each auth.                                              |
-| `auth_frequency`   | `typing.Optional[typing.Literal['daily', 'hourly']]`                                             | `False`    |           | Frequency of auth.                                                                     |
-| `group_targets`    | `typing.Optional[list[str]]`                                                                     | `False`    |           | Groups to target for the policy rule.                                                  |
-| `group_exclusions` | `typing.Optional[list[str]]`                                                                     | `False`    |           | Groups to exclude for the policy rule.                                                 |
-| `managed_device`   | `typing.Optional[list[typing.Literal['all', 'ios', 'macos', 'android', 'windows', 'chromeos']]]` | `False`    |           | Managed devices to target for the policy rule.  Cannot be set with `unmanaged_device`. |
-| `unmanaged_device` | `typing.Optional[list[typing.Literal['all', 'ios', 'macos', 'android', 'windows', 'chromeos']]]` | `False`    |           | Unmanaged devices to target for the policy rule.  Cannot be set with `managed_device`. |
+| name               | type                                                                                             | required   | default   | description                                                                                                                                |
+|--------------------|--------------------------------------------------------------------------------------------------|------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`             | `<class 'str'>`                                                                                  | `True`     |           | Name of the rule                                                                                                                           |
+| `access`           | `typing.Literal['ALLOW', 'DENY']`                                                                | `True`     |           | Access type.                                                                                                                               |
+| `network_zones`    | `typing.Optional[list[str]]`                                                                     | `False`    |           | List of network zone names.  These must exist.  Consider using `depends_on` in your module declaration on required network zones.          |
+| `step_up_auth`     | `typing.Optional[bool]`                                                                          | `False`    |           | Whether or not MFA is required each auth.                                                                                                  |
+| `auth_frequency`   | `typing.Optional[typing.Literal['daily', 'hourly']]`                                             | `False`    |           | Frequency of auth.                                                                                                                         |
+| `group_targets`    | `typing.Optional[list[str]]`                                                                     | `False`    |           | Group names to target for the policy rule.  These must exist.  Consider using `depends_on` in your module declaration on required groups.  |
+| `group_exclusions` | `typing.Optional[list[str]]`                                                                     | `False`    |           | Group names to exclude for the policy rule.  These must exist.  Consider using `depends_on` in your module declaration on required groups. |
+| `managed_device`   | `typing.Optional[list[typing.Literal['all', 'ios', 'macos', 'android', 'windows', 'chromeos']]]` | `False`    |           | Managed devices to target for the policy rule.  Cannot be set with `unmanaged_device`.                                                     |
+| `unmanaged_device` | `typing.Optional[list[typing.Literal['all', 'ios', 'macos', 'android', 'windows', 'chromeos']]]` | `False`    |           | Unmanaged devices to target for the policy rule.  Cannot be set with `managed_device`.                                                     |
 ## Requirements
 
 | Name | Version |
@@ -45,6 +45,8 @@ No modules.
 | [okta_app_signon_policy.this](https://registry.terraform.io/providers/okta/okta/4.12.0/docs/resources/app_signon_policy) | resource |
 | [okta_app_signon_policy_rule.implicit_deny](https://registry.terraform.io/providers/okta/okta/4.12.0/docs/resources/app_signon_policy_rule) | resource |
 | [okta_app_signon_policy_rule.rules](https://registry.terraform.io/providers/okta/okta/4.12.0/docs/resources/app_signon_policy_rule) | resource |
+| [okta_group.groups](https://registry.terraform.io/providers/okta/okta/4.12.0/docs/data-sources/group) | data source |
+| [okta_network_zone.zones](https://registry.terraform.io/providers/okta/okta/4.12.0/docs/data-sources/network_zone) | data source |
 
 ## Inputs
 
