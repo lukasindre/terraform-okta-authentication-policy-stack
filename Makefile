@@ -11,11 +11,9 @@ check:
 	poetry run ruff check .
 	poetry run ruff format --check .
 
-test-plan:
-	terraform plan -var-file=test.tfvars
-
-test-apply:
-	terraform apply -var-file=test.tfvars -auto-approve
-
 docs:
 	poetry run python make_doc.py
+
+.PHONY: test
+test:
+	cd test && go test -v
