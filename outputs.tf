@@ -3,12 +3,12 @@ output "authentication_policy_id" {
   description = "The ID of the authentication policy."
 }
 
-output "network_zones" {
-  value       = local.network_zones
-  description = "The network zones."
+output "authentication_policy_rules" {
+  value       = var.rules
+  description = "The IDs of the authentication policy rules."
 }
 
-output "groups" {
-  value       = local.groups
-  description = "The groups."
+output "network_zones" {
+  value       = local.network_zones
+  description = "The network zones associated with the authentication policy."
 }
