@@ -60,3 +60,5 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_authentication_policy_id"></a> [authentication\_policy\_id](#output\_authentication\_policy\_id) | The ID of the authentication policy. |
+| <a name="output_groups"></a> [groups](#output\_groups) | The groups. |
+| <a name="output_network_zones"></a> [network\_zones](#output\_network\_zones) | The network zones. |
